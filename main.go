@@ -2,18 +2,22 @@ package main
 
 import (
 	"fmt"
+	"github.com/gorilla/mux"
+	"net/http"
 	"os"
 )
 
 func main()  {
 	fmt.Println("Hello world")
 
-	// Create Redis Client
-	//client := redis.NewClient(&redis.Options{
-	//	Addr:     getEnv("REDIS_URL", "localhost:6379"),
-	//	Password: getEnv("REDIS_PASSWORD", ""),
-	//	DB:       0,
-	//})
+	router := mux.NewRouter()
+
+	port := getEnv("PORT", "8080")
+
+	err := http.ListenAndServe(":"+port, router)
+	if err != nil {
+		fmt.Print(err)
+	}
 }
 
 func getEnv(key, defaultValue string) string {

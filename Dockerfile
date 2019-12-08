@@ -9,13 +9,18 @@ RUN apk update && apk upgrade && \
     apk add --no-cache bash git openssh
 
 # Add Maintainer Info
-LABEL maintainer="Rajeev Singh <rajeevhub@gmail.com>"
+LABEL maintainer="Ivan Horbushko <ivan.gorbushko@gmail.com>"
 
 # Set the Current Working Directory inside the container
 WORKDIR /app
 
 # Copy go mod and sum files
 COPY go.mod go.sum ./
+
+# HELP
+# go get -u
+# go get -u=patch
+# go get github.com/robteix/testmod@v1.0.1
 
 # Download all dependancies. Dependencies will be cached if the go.mod and go.sum files are not changed
 RUN go mod download
