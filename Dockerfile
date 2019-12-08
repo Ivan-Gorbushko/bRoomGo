@@ -3,10 +3,15 @@
 # Start from golang:1.12-alpine base image
 FROM golang:1.12-alpine
 
+# alpine LINUX
+#https://stackoverflow.com/questions/56580412/mysql-installation-for-alpine-linux-in-docker
 # The latest alpine images don't have some tools like (`git` and `bash`).
 # Adding git, bash and openssh to the image
 RUN apk update && apk upgrade && \
     apk add --no-cache bash git openssh
+
+RUN apk update && \
+    apk add mysql mysql-client
 
 # Add Maintainer Info
 LABEL maintainer="Ivan Horbushko <ivan.gorbushko@gmail.com>"
