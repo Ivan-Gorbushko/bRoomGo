@@ -10,8 +10,8 @@ FROM golang:1.12-alpine
 RUN apk update && apk upgrade && \
     apk add --no-cache bash git openssh
 
-RUN apk update && \
-    apk add mysql mysql-client
+#RUN apk update && \
+#    apk add mysql mysql-client
 
 # Add Maintainer Info
 LABEL maintainer="Ivan Horbushko <ivan.gorbushko@gmail.com>"

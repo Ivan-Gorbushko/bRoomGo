@@ -1,11 +1,11 @@
 package main
 
 import (
+	"bRoomGo/utils"
 	"fmt"
 	"github.com/gorilla/mux"
 	"net/http"
-	"bRoomGo/utils"
-	"bRoomGo/models"
+	"bRoomGo/controllers"
 )
 
 func main()  {
@@ -14,9 +14,10 @@ func main()  {
 
 	router := mux.NewRouter()
 
-	port := utils.GetEnvData("PORT", "8080")
+	router.HandleFunc("/api/user", controllers.CreateUser).Methods("POST")
+	router.HandleFunc("/api/user/{id:[0-9]+}", controllers.GetUser).Methods("GET")
 
-	models.Test()
+	port := utils.GetEnvData("PORT", "8080")
 
 	err := http.ListenAndServe(":"+port, router)
 	if err != nil {

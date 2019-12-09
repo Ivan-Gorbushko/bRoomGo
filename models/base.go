@@ -18,9 +18,7 @@ func init()  {
 	dbParseTime := utils.GetEnvData("db_parse_time", "True")
 	dbLoc := utils.GetEnvData("db_loc", "Local")
 
-	dbUri := fmt.Sprintf("%s:%s@(%s)/%s?charset=%s&parseTime=%s&loc=%s", username, password, dbHost, dbName, dbCharset, dbParseTime, dbLoc)
-	//dbUri = utils.GetEnvData("database_url", "")
-	//dbUri = "user:password@tcp(db:3306)/db"
+	dbUri := fmt.Sprintf("%s:%s@tcp(%s:3306)/%s?charset=%s&parseTime=%s&loc=%s", username, password, dbHost, dbName, dbCharset, dbParseTime, dbLoc)
 	fmt.Println(dbUri)
 
 	conn, err := gorm.Open("mysql", dbUri)
@@ -29,11 +27,10 @@ func init()  {
 	}
 
 	db = conn
-	//db.Debug().AutoMigrate(&Account{}, &Contact{})
 	//db.Debug().AutoMigrate(&User{})
-	//db.AutoMigrate(&User{})
+	db.AutoMigrate(&User{})
 }
 
-func Test()  {
-
+func GetDB() *gorm.DB {
+	return db
 }
