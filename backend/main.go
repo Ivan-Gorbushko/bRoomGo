@@ -1,11 +1,11 @@
-package backend
+package main
 
 import (
-	"bRoomGo/utils"
+	"backend/utils"
 	"fmt"
 	"github.com/gorilla/mux"
 	"net/http"
-	"bRoomGo/controllers"
+	"backend/controllers"
 )
 
 func main()  {

@@ -13,7 +13,7 @@ services:
     tty: true
     ports:
       - "8080:8080" # Forward the exposed port 8080 on the container to port 8080 on the host machine
-    restart: unless-stopped
+#    restart: unless-stopped
     depends_on:
       - broom_db
     networks: # Networks to join (Services on the same network can communicate with each other using their name)

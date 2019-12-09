@@ -1,8 +1,8 @@
 package controllers
 
 import (
-	"bRoomGo/models"
-	"bRoomGo/utils"
+	"backend/models"
+	"backend/utils"
 	"encoding/json"
 	"fmt"
 	"github.com/gorilla/mux"

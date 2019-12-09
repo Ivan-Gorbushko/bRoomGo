@@ -1,4 +1,4 @@
-module bRoomGo
+module backend
 
 go 1.13
 
