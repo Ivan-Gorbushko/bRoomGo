@@ -14,7 +14,7 @@ RUN apk update && apk upgrade && \
 #    apk add mysql mysql-client
 
 # Add Maintainer Info
-LABEL maintainer="Ivan Horbushko <ivan.gorbushko@gmail.com>"
+# LABEL maintainer="Ivan Horbushko <ivan.gorbushko@gmail.com>"
 
 # Set the Current Working Directory inside the container
 WORKDIR /app
@@ -35,6 +35,7 @@ COPY . .
 
 # Build the Go app
 RUN go build -o main .
+RUN chmod +x ./main
 
 # Expose port 8080 to the outside world
 EXPOSE 8080
