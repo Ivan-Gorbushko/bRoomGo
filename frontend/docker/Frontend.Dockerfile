@@ -1,16 +1,18 @@
-# Use an official node runtime as a parent image
 FROM node:8
 
-WORKDIR /app/
+ADD yarn.lock /yarn.lock
+ADD package.json /package.json
 
-# Install dependencies
-# COPY package.json yarn.lock /app/
+ENV NODE_PATH=/node_modules
+ENV PATH=$PATH:/node_modules/.bin
+RUN yarn
 
-# RUN npm install
-
-# Add rest of the client code
-COPY . /app/
+WORKDIR /app
+# ADD . /app
+COPY . /app
 
 EXPOSE 3000
+EXPOSE 35729
 
-# CMD npm start
+ENTRYPOINT ["/bin/bash", "/app/run.sh"]
+CMD ["start"]

@@ -16,3 +16,10 @@ Set-up react and pyt and docker
 
 #### Help commands
 docker stop $(docker ps -a --format "{{.Names}}" | grep broom) && docker rm $(docker ps -a --format "{{.Names}}" | grep broom)
+
+
+## FRONT HELP
+
+##### https://www.peterbe.com/plog/how-to-create-react-app-with-docker - install react app
+##### https://dev.to/peterj/run-a-react-app-in-a-docker-container-kjn - install react app
+##### https://ru.reactjs.org/docs/create-a-new-react-app.html - react utils

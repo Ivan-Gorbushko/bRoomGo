@@ -25,15 +25,16 @@ services:
       context: ./frontend # Use an image built from the specified dockerfile in the current directory.
       dockerfile: ./docker/Frontend.Dockerfile
     container_name: broom_frontend
+#    volumes:
+#      - ./frontend:/app
     ports:
       - "3000:3000"
-    logging:
-      driver: none
+#    logging:
+#      driver: none
 #    restart: unless-stopped
     tty: true
     depends_on:
       - broom_backend
-      - broom_db
     networks: # Networks to join (Services on the same network can communicate with each other using their name)
       - backend
 
