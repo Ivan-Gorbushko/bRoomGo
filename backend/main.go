@@ -16,6 +16,7 @@ func main()  {
 
 	router.HandleFunc("/api/user", controllers.CreateUser).Methods("POST")
 	router.HandleFunc("/api/user/{id:[0-9]+}", controllers.GetUser).Methods("GET")
+	router.HandleFunc("/api/users", controllers.GetUsers).Methods("GET")
 
 	port := utils.GetEnvData("PORT", "8080")
 
