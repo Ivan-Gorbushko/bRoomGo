@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import Modal from 'react-bootstrap/Modal'
-import {Button, ButtonToolbar, Alert} from 'react-bootstrap';
+import {Button, ButtonToolbar} from 'react-bootstrap';
 
 function UserInfoModal(props) {
     return (
@@ -10,9 +10,10 @@ function UserInfoModal(props) {
             aria-labelledby="contained-modal-title-vcenter"
             centered
         >
+            {console.log(props)}
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
-                    Modal heading
+                    {/*{props.userdata.name}*/}
                 </Modal.Title>
             </Modal.Header>
 
@@ -29,10 +30,7 @@ function UserInfoModal(props) {
                                 <div className="divider-custom-line"></div>
                             </div>
                             <img className="img-fluid rounded mb-5" src="img/portfolio/cabin.png" alt="" />
-                                <p className="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia
-                                    neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore
-                                    quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur
-                                    itaque. Nam.</p>
+                                {/*<p className="mb-5">My name is {props.userdata.name}. I was registered on this site on {props.userdata.CreatedAt}. I am {props.userdata.age} years old </p>*/}
                         </div>
                     </div>
                 </div>
@@ -85,28 +83,25 @@ function Portfolio(props) {
                     <div className="row">
                         {this.state.userData.map((item, index) => (
                             <div className="col-md-6 col-lg-4" key={index}>
-
-                                <ButtonToolbar>
-                                    <Button variant="link" onClick={() => setModalShow(true)}>
-                                        <div className="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal1">
-                                            <div
-                                                className="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                                                <div className="portfolio-item-caption-content text-center text-white">
-                                                    <i className="fas fa-plus fa-3x"></i>
-                                                </div>
+                                <Button variant="link" onClick={() => setModalShow(true)}>
+                                    <div className="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal1">
+                                        <div className="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                            <div className="portfolio-item-caption-content text-center text-white">
+                                                <i className="fas fa-plus fa-3x"></i>
                                             </div>
-                                            <img className="img-fluid" src="img/portfolio/cabin.png" alt=""/>
                                         </div>
-                                    </Button>
-
-                                    <UserInfoModal
-                                        show={modalShow}
-                                        onHide={() => setModalShow(false)}
-                                    />
-                                </ButtonToolbar>
+                                        <img className="img-fluid" src="img/portfolio/cabin.png" alt=""/>
+                                    </div>
+                                </Button>
                             </div>
                         ))}
                     </div>
+
+                    <UserInfoModal
+                        show={modalShow}
+                        onHide={() => setModalShow(false)}
+                        // userdata={item}
+                    />
                 </div>
             );
         }
