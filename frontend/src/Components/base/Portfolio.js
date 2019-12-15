@@ -1,112 +1,49 @@
 import React, {Component} from "react";
-import Modal from 'react-bootstrap/Modal'
-import {Button, ButtonToolbar} from 'react-bootstrap';
+import UserInfoModal from "./UserInfoModal";
 
-function UserInfoModal(props) {
-    return (
-        <Modal
-            {...props}
-            size="lg"
-            aria-labelledby="contained-modal-title-vcenter"
-            centered
-        >
-            {console.log(props)}
-            <Modal.Header closeButton>
-                <Modal.Title id="contained-modal-title-vcenter">
-                    {/*{props.userdata.name}*/}
-                </Modal.Title>
-            </Modal.Header>
+class Portfolio extends Component {
 
-            <Modal.Body>
-                <div className="container">
-                    <div className="row justify-content-center">
-                        <div className="col-lg-8">
-                            <h2 className="portfolio-modal-title text-secondary text-uppercase mb-0">Log Cabin</h2>
-                            <div className="divider-custom">
-                                <div className="divider-custom-line"></div>
-                                <div className="divider-custom-icon">
-                                    <i className="fas fa-star"></i>
-                                </div>
-                                <div className="divider-custom-line"></div>
-                            </div>
-                            <img className="img-fluid rounded mb-5" src="img/portfolio/cabin.png" alt="" />
-                                {/*<p className="mb-5">My name is {props.userdata.name}. I was registered on this site on {props.userdata.CreatedAt}. I am {props.userdata.age} years old </p>*/}
-                        </div>
-                    </div>
-                </div>
-            </Modal.Body>
-            <Modal.Footer>
-                <Button onClick={props.onHide}>Close</Button>
-            </Modal.Footer>
-        </Modal>
-    );
-}
-
-function Portfolio(props) {
-
-    const [modalShow, setModalShow] = React.useState(false);
-
-    class Portfolio extends Component {
-
-        constructor(props) {
-            super(props);
-            this.state = {
-                userData: [],
-                modalShow: false,
-            };
-        }
-
-        componentDidMount() {
-            const URL = "http://localhost:8080/api/users";
-            fetch(URL).then(res => res.json()).then(json => {
-                this.setState({userData: json.data});
-            });
-        }
-
-        render() {
-            return (
-                <div className="container">
-
-                    {/*Portfolio Section Heading*/}
-                    <h2 className="page-section-heading text-center text-uppercase text-secondary mb-0">Portfolio</h2>
-
-                    {/*Icon Divider*/}
-                    <div className="divider-custom">
-                        <div className="divider-custom-line"></div>
-                        <div className="divider-custom-icon">
-                            <i className="fas fa-star"></i>
-                        </div>
-                        <div className="divider-custom-line"></div>
-                    </div>
-
-                    {/*Portfolio Grid Items*/}
-                    <div className="row">
-                        {this.state.userData.map((item, index) => (
-                            <div className="col-md-6 col-lg-4" key={index}>
-                                <Button variant="link" onClick={() => setModalShow(true)}>
-                                    <div className="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal1">
-                                        <div className="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                                            <div className="portfolio-item-caption-content text-center text-white">
-                                                <i className="fas fa-plus fa-3x"></i>
-                                            </div>
-                                        </div>
-                                        <img className="img-fluid" src="img/portfolio/cabin.png" alt=""/>
-                                    </div>
-                                </Button>
-                            </div>
-                        ))}
-                    </div>
-
-                    <UserInfoModal
-                        show={modalShow}
-                        onHide={() => setModalShow(false)}
-                        // userdata={item}
-                    />
-                </div>
-            );
-        }
+    constructor(props) {
+        super(props);
+        this.state = {
+            userData: [],
+            modalShow: false,
+        };
     }
-    return <Portfolio {...props}/>
+
+    componentDidMount() {
+        const URL = "http://localhost:8080/api/users";
+        fetch(URL).then(res => res.json()).then(json => {
+            this.setState({userData: json.data});
+        });
+    }
+
+    render() {
+        return (
+            <div className="container">
+
+                <h2 className="page-section-heading text-center text-uppercase text-secondary mb-0">Portfolio</h2>
+
+                <div className="divider-custom">
+                    <div className="divider-custom-line"></div>
+                    <div className="divider-custom-icon">
+                        <i className="fas fa-star"></i>
+                    </div>
+                    <div className="divider-custom-line"></div>
+                </div>
+
+                <div className="row">
+                    {this.state.userData.map((item, index) => (
+                        <div className="col-md-6 col-lg-4" key={index}>
+                           <UserInfoModal
+                               userDataModal = {item}
+                           />
+                        </div>
+                    ))}
+                </div>
+            </div>
+        );
+    }
 }
 
 export default Portfolio;
