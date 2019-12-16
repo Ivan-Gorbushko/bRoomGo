@@ -25,8 +25,8 @@ services:
       context: ./frontend # Use an image built from the specified dockerfile in the current directory.
       dockerfile: ./docker/Frontend.Dockerfile
     container_name: broom_frontend
-#    volumes:
-#      - ./frontend:/app
+    volumes:
+      - ./frontend:/app
     ports:
       - "3000:3000"
 #    logging:

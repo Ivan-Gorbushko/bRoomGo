@@ -23,3 +23,4 @@ docker stop $(docker ps -a --format "{{.Names}}" | grep broom) && docker rm $(do
 ##### https://www.peterbe.com/plog/how-to-create-react-app-with-docker - install react app
 ##### https://dev.to/peterj/run-a-react-app-in-a-docker-container-kjn - install react app
 ##### https://ru.reactjs.org/docs/create-a-new-react-app.html - react utils
+##### https://medium.com/@chrischuck35/how-to-build-a-simple-web-app-in-react-graphql-go-e71c79beb1d - GraphQL React Golang
