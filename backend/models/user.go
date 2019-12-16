@@ -9,8 +9,8 @@ import (
 //a struct to rep user account
 type User struct {
 	gorm.Model
-	Age		 string `json:"age"`
-	Name	 string `json:"name"`
+	Age      string `json:"age"`
+	Name     string `json:"name"`
 	Email    string `json:"email"`
 	Password string `json:"password"`
 }
